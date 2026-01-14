@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: model
+  name: model
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: model
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: model
+    spec:
+      containers:
+        - image: sharacha/house-price-model:latest
+          name: house-price-model
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+status: {}
